@@ -26,6 +26,10 @@ public class Car {
         return owner;
     }
 
+    public String getUsername(){
+        return owner.toString();
+    }
+
     public void setOwner(User owner) {
         this.owner = owner;
     }
