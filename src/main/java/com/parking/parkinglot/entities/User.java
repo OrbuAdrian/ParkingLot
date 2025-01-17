@@ -24,6 +24,8 @@ public class User {
   @Column(name = "username", nullable = false)
   private String username;
 
+  @Column(name = "age", nullable = false)
+  private Integer age;
 
   @OneToMany(mappedBy = "owner", orphanRemoval = true)
   private List<Car> cars = new ArrayList<>();
@@ -69,4 +71,11 @@ public class User {
     this.username = username;
   }
 
+  public Integer getAge() {
+    return age;
+  }
+
+  public void setAge(Integer age) {
+    this.age = age;
+  }
 }

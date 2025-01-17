@@ -5,14 +5,17 @@
 <t:pageTemplate pageTitle="Cars">
   <h1>Users</h1>
   <div class="container text-center">
+    <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddUser">Add User</a>
     <c:forEach var="user" items="${users}">
       <div class="row">
         <div class="col">
             ${user.username}
         </div>
+
         <div class="col">
             ${user.email}
         </div>
+
       </div>
     </c:forEach>
   </div>

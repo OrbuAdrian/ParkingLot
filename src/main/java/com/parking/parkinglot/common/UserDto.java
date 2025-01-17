@@ -5,12 +5,14 @@ public class UserDto {
     String email;
     String password;
     String username;
+    Integer age;
 
-    public UserDto(Long id, String email ,String password, String username) {
+    public UserDto(Long id, String email ,String password, String username, Integer age) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.username = username;
+        this.age = age;
     }
 
     public Long getId() {
@@ -43,5 +45,13 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }
