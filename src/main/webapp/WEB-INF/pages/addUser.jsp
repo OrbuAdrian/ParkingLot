@@ -6,36 +6,38 @@
   <form class="needs-validation" novalidate method="POST" action="${pageContext.request.contextPath}/AddUser">
     <div class="row">
       <div class="col-md-6 mb-3">
-        <!-- Numar inmatriculare -->
-        <label for="license_plate" >Username</label>
-        <input type="text" class="form-control" id="license_plate" name="license_plate" placeholder="" value="" required>
+        <!-- Nume User -->
+        <label for="username" >Username</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="" value="" required>
         <div class="invalid-feedback">
           Username is required!
         </div>
 
-        <!-- Loc de parcare -->
-        <label for="parking_spot">Parking Spot</label>
-        <input type="text" class="form-control" id="parking_spot" name="parking_spot" placeholder="" value="" required>
+        <!-- Email -->
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" name="email" placeholder="" value="" required>
         <div class="invalid-feedback">
-          Parking Spot is required!
+          Email is required!
         </div>
 
-        <!-- Proprietar -->
-        <label for="owner_id" class="form-label">State</label>
-        <select class="custom-select d-block w-100" id="owner_id" name="owner_id" required>
+        <!-- Parola -->
+        <label for="password">Password</label>
+        <input type="text" class="form-control" id="password" name="password" placeholder="" value="" required>
+        <div class="invalid-feedback">
+          Email is required!
+        </div>
 
-          <option selected disabled value="Choose...">Choose...</option>>
-          <c:forEach var="user" items="${users}" varStatus="status">
-            <option value="${user.id}">${user.username}</option>">
+        <!-- UserGroup -->
+        <label for="user_groups">Groups</label>
+        <select class="custom-select d-block w-100" id="user_groups" name="user_groups" multiple>
 
+          <c:forEach var="user_group" items="${userGroups}" varStatus="status">
+            <option value="${user_group}">${user_group}</option>">
           </c:forEach>
 
         </select>
 
-        <div class="invalid-feedback">
-          Parking Spot is required!
-        </div>
-
+        <hr class="mb-4">
         <button class="btn btn-primary btn-lg" type="submit">Save</button>
       </div>
 

@@ -4,6 +4,8 @@ import com.parking.parkinglot.common.UserDto;
 import com.parking.parkinglot.ejb.UsersBean;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.HttpConstraint;
+import jakarta.servlet.annotation.ServletSecurity;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,6 +15,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = {"WRITE_USERS"}))
 @WebServlet(name = "AddUser", value = "/AddUser")
 public class AddUser extends HttpServlet {
 
@@ -34,9 +37,8 @@ public class AddUser extends HttpServlet {
         if (userGroups == null) {
             userGroups = new String[0];
         }
-        List<String> usergroup = Arrays.asList(userGroups);
-        String userGroupsString = String.join(",", usergroup);
-        usersBean.createUser(username, email, password);
+
+        usersBean.createUser(username, email, password, Arrays.asList(userGroups));
         resp.sendRedirect(request.getContextPath() + "/Users");
     }
 }

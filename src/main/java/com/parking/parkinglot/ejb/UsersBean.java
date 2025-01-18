@@ -44,26 +44,19 @@ public class UsersBean {
         return dtos;
     }
 
-    public void createUser(String email, String password, String username) {
-        LOG.info("Creating user");
+    public void createUser(String username, String email, String password, Collection<String> groups) {
+        LOG.info("createUser");
+        Random random = new Random();
+        int age = random.nextInt(83) + 18;
 
-        try {
+        User newUser = new User();
+        newUser.setUsername(username);
+        newUser.setEmail(email);
+        newUser.setPassword(passwordBean.convertToSha256(password));
+        newUser.setAge(age);
 
-            Random random = new Random();
-            int age = random.nextInt(83) + 18;
-
-            // Cream un obiect User
-            User user = new User();
-            user.setEmail(email);
-            user.setPassword(password);
-            user.setUsername(username);
-            user.setAge(age);
-
-
-            entityManager.persist(user);
-        } catch (Exception ex) {
-            throw new EJBException(ex);
-        }
+        entityManager.persist(newUser);
+        assignGroupsToUser(username, groups);
     }
 
     private void assignGroupsToUser(String username, Collection<String> groups) {
